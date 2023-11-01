@@ -135,12 +135,12 @@
   </q-dialog>
 </template>
 <script>
-import Layout from "../layout/layout.vue";
+import layout from "../layout/layout.vue";
 import { ref, reactive } from "vue";
 import { router } from "@inertiajs/vue3";
 import axios from "axios"; //memangggil hubungan front end dan back end dan untuk get data
 export default {
-  layout: Layout,
+  layout: layout,
   props: {
     data: Array,
   },

@@ -1,22 +1,22 @@
 <template>
   <q-page class="bgabtus">
-    <p
-      style="color: #fc6dab; font-size: 46px; padding-top: 3%"
-      class="text-weight-bolder text-center"
-    >
-      Our Special Bags
-    </p>
+    <div style="padding: 10%; padding-top: 3%; padding-bottom: 0">
+      <p
+        style="color: #fc6dab; font-size: 40px; padding-top: 3%"
+        class="text-weight-bolder q-mb-xl text-center"
+      >
+        Our Special Bags
+      </p>
 
-    <div class="item-center">
-      <div class="q-col-gutter-md">
-        <div class="q-pa-md row items-start q-gutter-md">
+      <div class="q-mb-xl">
+        <div class="row items-start q-gutter-md">
           <q-card
             class="my-card"
-            style="width: 316px; height: 380px; border-radius: 10px"
+            style="width: 310px; height: 380px; border-radius: 10px"
           >
             <img
               style="width: 316px; height: 200px; padding: 2%; border-radius: 10px"
-              src="../../../public/assets/img/bg.jpg"
+              src="../../../public/assets/img/produk.jpg"
             />
 
             <q-card-section>
@@ -47,7 +47,7 @@
           >
             <img
               style="width: 316px; height: 200px; padding: 2%; border-radius: 10px"
-              src="../../../public/assets/img/bg.jpg"
+              src="../../../public/assets/img/produk.jpg"
             />
 
             <q-card-section>
@@ -78,7 +78,7 @@
           >
             <img
               style="width: 316px; height: 200px; padding: 2%; border-radius: 10px"
-              src="../../../public/assets/img/bg.jpg"
+              src="../../../public/assets/img/produk.jpg"
             />
 
             <q-card-section>
@@ -104,25 +104,23 @@
           </q-card>
         </div>
       </div>
-    </div>
 
-    <p
-      style="color: #000000; font-size: 39px; padding-top: 3%"
-      class="text-weight-bold text-center"
-    >
-      Our Other Items
-    </p>
+      <p
+        style="color: #000000; font-size: 35px; padding-top: 3%"
+        class="text-weight-bold text-center"
+      >
+        Our Other Items
+      </p>
 
-    <div class="item-center">
-      <div class="q-col-gutter-md">
-        <div class="q-pa-md row items-start q-gutter-md">
+      <div class="">
+        <div class="row items-start q-gutter-md">
           <q-card
             class="my-card"
             style="width: 316px; height: 380px; border-radius: 10px"
           >
             <img
               style="width: 316px; height: 200px; padding: 2%; border-radius: 10px"
-              src="../../../public/assets/img/bg.jpg"
+              src="../../../public/assets/img/produk.jpg"
             />
 
             <q-card-section>
@@ -153,7 +151,7 @@
           >
             <img
               style="width: 316px; height: 200px; padding: 2%; border-radius: 10px"
-              src="../../../public/assets/img/bg.jpg"
+              src="../../../public/assets/img/produk.jpg"
             />
 
             <q-card-section>
@@ -184,7 +182,7 @@
           >
             <img
               style="width: 316px; height: 200px; padding: 2%; border-radius: 10px"
-              src="../../../public/assets/img/bg.jpg"
+              src="../../../public/assets/img/produk.jpg"
             />
 
             <q-card-section>

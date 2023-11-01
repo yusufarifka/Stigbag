@@ -117,8 +117,12 @@
     <q-dialog persistent v-model="dialogLogin">
       <q-card style="width: 700px">
         <q-toolbar>
-          <q-toolbar-title v-if="!reg">LOGIN</q-toolbar-title>
-          <q-toolbar-title v-else>REGISTER</q-toolbar-title>
+          <q-toolbar-title v-if="!reg" style="color: #fc6dab" class="text-weight-bold"
+            >Log In to Your Account</q-toolbar-title
+          >
+          <q-toolbar-title v-else style="color: #fc6dab" class="text-weight-bold"
+            >Create Account</q-toolbar-title
+          >
           <q-space />
           <span v-if="status.length" class="text-gray q-ml-lg"> {{ status }} </span>
           <q-btn
@@ -135,61 +139,73 @@
         <q-card-section>
           <!-- LOGIN -->
           <q-form v-if="!reg" class="q-gutter-sm">
-            <q-input outlined label="username" v-model="form.username">
-              <template v-slot:prepend>
-                <q-icon name="person" />
-              </template>
+            <p>Username</p>
+            <q-input outlined rounded v-model="form.username" style="border-color: black">
             </q-input>
-            <q-input outlined label="password" type="password" v-model="form.password">
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-            </q-input>
+            <p>Password</p>
+            <q-input outlined rounded type="password" v-model="form.password"> </q-input>
 
-            <div>
-              <q-btn @click="login" label="login" style="width: 100%" color="purple" />
-            </div>
-            <div>
-              <span @click="ubah">Register</span>
+            <div class="q-my-md q-gutter-sm float-right">
+              <q-btn
+                class="text-capitalize"
+                flat
+                rounded
+                @click="ubah"
+                label="Register"
+                style="width: 100px; background-color: #aeaeae; color: white"
+              />
+              <q-btn
+                class="text-capitalize"
+                flat
+                rounded
+                @click="login"
+                label="Log In"
+                style="width: 100px; background-color: #c04cfd; color: white"
+              />
             </div>
           </q-form>
 
           <!-- REGISTER -->
           <q-form v-if="reg" class="q-gutter-sm">
-            <q-input :hint="errors.name" outlined label="name" v-model="register.name">
-              <template v-slot:prepend>
-                <q-icon name="person" />
-              </template>
+            <p>Name</p>
+            <q-input :hint="errors.name" outlined rounded v-model="register.name">
             </q-input>
-            <q-input
-              :hint="errors.username"
-              outlined
-              label="username"
-              v-model="register.username"
-            >
-              <template v-slot:prepend>
-                <q-icon name="person" />
-              </template>
+
+            <p>Username</p>
+            <q-input :hint="errors.username" outlined rounded v-model="register.username">
             </q-input>
+
+            <p>Password</p>
             <q-input
               :hint="errors.password"
               outlined
-              label="password"
+              rounded
               type="password"
               v-model="register.password"
             >
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
             </q-input>
-            <q-input :hint="errors.email" outlined label="email" v-model="register.email">
-              <template v-slot:prepend>
-                <q-icon name="mail" />
-              </template>
+
+            <p>Email</p>
+            <q-input :hint="errors.email" outlined rounded v-model="register.email">
             </q-input>
-            <div class="text-right">
-              <q-btn label="register" @click="registerSave" color="blue" />
-              <q-btn label="login" color="purple" @click="reg = false" class="q-ml-sm" />
+
+            <div class="q-my-md q-gutter-sm float-right">
+              <q-btn
+                class="text-capitalize"
+                flat
+                rounded
+                @click="reg = false"
+                label="Log In"
+                style="width: 100px; background-color: #aeaeae; color: white"
+              />
+              <q-btn
+                class="text-capitalize"
+                flat
+                rounded
+                @click="registerSave"
+                label="Register"
+                style="width: 100px; background-color: #c04cfd; color: white"
+              />
             </div>
           </q-form>
         </q-card-section>

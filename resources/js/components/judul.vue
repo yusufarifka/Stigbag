@@ -29,14 +29,18 @@
         style="margin: auto; width: 1100px"
       >
         <div class="q-pa-md row items-start q-gutter-md">
-          <q-card class="bg-black text-white" style="width: 240px; height: auto">
+          <q-card
+            flat
+            class="bg-transparent text-white"
+            style="width: 240px; height: auto"
+          >
             <q-card-section class="q-p-xl">
               <div style="font-size: 18px" class="text-weight-bold">
                 Futuristic & Classic
               </div>
             </q-card-section>
 
-            <q-card-section class="q-p-xl">
+            <q-card-section class="q-p-xl q-pt-none">
               <div style="font-size: 14px">
                 "Introducing a fusion of the future and timeless allure in our collection.
                 Discover the perfect balance between futuristic innovation and classic
@@ -45,25 +49,29 @@
             </q-card-section>
           </q-card>
 
-          <q-card class="bg-black text-white" style="width: 240px; height: auto">
+          <q-card
+            flat
+            class="bg-transparent text-white"
+            style="width: 240px; height: auto"
+          >
             <q-card-section class="q-p-xl">
               <div style="font-size: 18px" class="text-weight-bold">Cool Design</div>
             </q-card-section>
 
             <q-card-section class="q-p-xl">
-              <div style="font-size: 14px">
+              <div style="font-size: 14px q-pt-none">
                 "Immerse yourself in the world of innovation and style with our
                 captivating cool designs”
               </div>
             </q-card-section>
           </q-card>
 
-          <q-card class="bg-black text-white" style="width: 240px; height: auto">
+          <q-card class="bg-transparent text-white" style="width: 240px; height: auto">
             <q-card-section class="q-p-xl">
               <div style="font-size: 18px" class="text-weight-bold">Luxury Materials</div>
             </q-card-section>
 
-            <q-card-section class="q-p-xl">
+            <q-card-section class="q-p-xl q-pt-none">
               <div style="font-size: 14px">
                 "Indulge in the opulence of our luxurious materials that redefine
                 elegance.”
@@ -71,12 +79,12 @@
             </q-card-section>
           </q-card>
 
-          <q-card class="bg-black text-white" style="width: 240px; height: auto">
+          <q-card class="bg-transparent text-white" style="width: 240px; height: auto">
             <q-card-section class="q-p-xl">
               <div style="font-size: 18px" class="text-weight-bold">High Quality</div>
             </q-card-section>
 
-            <q-card-section class="q-p-xl">
+            <q-card-section class="q-p-xl q-pt-none">
               <div style="font-size: 14px">
                 "Experience the essence of true craftsmanship with our high-quality,
                 artisan-crafted bags”
@@ -92,7 +100,7 @@
       <div class="q-mx-xl" style="margin-top: 0; padding: 5%">
         <div class="row">
           <div class="rounded col text-center">
-            <img src="../../../public/assets/img/bg.jpg" style="width: 90%" alt="" />
+            <img src="../../../public/assets/img/abtus.jpg" style="width: 90%" alt="" />
           </div>
           <q-card-section class="col text-center">
             <p class="text-left text-weight-bold" style="color: #fc6dab; font-size: 46px">
@@ -135,7 +143,7 @@ export default {
   z-index: -1;
 }
 .bgdua {
-  /* background-image: url('../../../public/assets/img/bg'); */
-  background-color: black;
+  background-image: url("../../../public/assets/img/bg 2.jpg");
+  background-size: cover;
 }
 </style>
