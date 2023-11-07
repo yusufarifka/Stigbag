@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh LpR fFf">
     <!-- HEADER -->
-    <q-header class="bg-white shadow-4">
+    <q-header class="shadow-1"  style="background-color: #ffffff;">
       <q-toolbar class="q-px-lg">
         <q-btn
           v-if="$page.props.auth.user"
@@ -16,34 +16,36 @@
           style="font-style: italic; color: #fc6dab; font-weight: bold; font-size: 28px"
         >
           SticBag
-        </q-toolbar-title>
+        </q-toolbar-title >
         <q-space />
-        <q-tabs inline-label class="text-dark">
+        <q-tabs inline-label class="text-dark ">
           <!-- TOOLS LINK -->
-          <Link href="/" as="q-tab" style="color: #fc6dab; font-size: 18">
-            <q-tab name="home" label="Home" />
+          <Link href="/" as="q-tab" style="color: #fc6dab; font-size: 18;">
+            <q-tab name="home" class="text-capitalize q-mx-md" label="Home" />
           </Link>
           <Link href="/products" as="q-tab" style="color: #fc6dab; font-size: 18">
-            <q-tab name="products" label="Products" />
+            <q-tab name="products"  class="text-capitalize q-mx-md" label="Products" />
+          </Link>
+          <Link href="/" as="q-tab"  class="text-capitalize" style="color: #fc6dab; font-size: 18">
+            <q-tab name="more"  class="text-capitalize q-mx-md" label="More" />
           </Link>
           <Link href="/" as="q-tab" style="color: #fc6dab; font-size: 18">
-            <q-tab name="more" label="More" />
-          </Link>
-          <Link href="/" as="q-tab" style="color: #fc6dab; font-size: 18">
-            <q-tab name="about us" label="About us" />
+            <q-tab name="about us"  class="text-capitalize q-mx-md" label="About us" />
           </Link>
           <!-- <Link href="/Profile" as="q-tab" style="color: #FC6DAB; font-size: 18;">
           <q-tab name="profile" label="Profile" icon="account_circle" />
           </Link> -->
 
           <q-btn
+          flat
             rounded
             outlined
             v-if="$page.props.auth.user"
-            style="color: #fc6dab; font-size: 18"
+            style="width:100px;color: #ffffff; background-color:#fc6dab; font-size: 18"
             name="logout"
-            label="Logout"
+            label="Log out"
             @click="logout"
+            class="text-capitalize q-ml-md"
           />
           <q-btn
             rounded
@@ -65,48 +67,60 @@
       side="left"
       bordered
       class="tlbc"
-      style="width: 100px"
+      style="width: 100px;background-color: #ffffff;"
     >
       <!-- drawer content -->
-      <q-list class="q-mt-md">
+      <q-list class="q-mt-lg">
+        <q-item as="q-item">
+            <q-item-section style="font-size: 18px; color: #b5b5b5;" class="text-weight-bold">Menu</q-item-section>
+        </q-item>
+      </q-list>
+      <q-list>
         <Link href="/dashboard" as="q-item" style="color: black">
           <q-item clickable v-ripple>
-            <q-item-section avatar> </q-item-section>
+            <q-item-section avatar>
+                <q-icon name="home"/>
+            </q-item-section>
 
-            <q-item-section style="font-size: 150%">Dashboard</q-item-section>
+            <q-item-section style="font-size: 18px" class="text-weight-regular">Dashboard</q-item-section>
           </q-item>
         </Link>
       </q-list>
 
-      <q-list class="q-mt-md">
+      <q-list class="">
         <Link href="/user" as="q-item" style="color: black">
           <q-item clickable v-ripple>
-            <q-item-section avatar> </q-item-section>
+            <q-item-section avatar>
+                <q-icon name="profile"/>
+            </q-item-section>
 
-            <q-item-section style="font-size: 150%">User</q-item-section>
+            <q-item-section style="font-size: 18px" class="text-weight-regular">User</q-item-section>
           </q-item>
         </Link>
       </q-list>
 
-      <q-list class="q-mt-md">
-        <Link href="/products" as="q-item" style="color: black">
+      <q-list class=""  >
+
+        <Link  href="/products" as="q-item" style="color: black">
           <q-item clickable v-ripple>
             <q-item-section avatar> </q-item-section>
 
-            <q-item-section style="font-size: 150%">Products</q-item-section>
+            <q-item-section   style="font-size: 18px" class="text-weight-regular">Products</q-item-section>
           </q-item>
         </Link>
       </q-list>
 
-      <q-list class="q-mt-md">
-        <Link href="/orders" as="q-item" style="color: black">
-          <q-item clickable v-ripple>
-            <q-item-section avatar> </q-item-section>
+      <q-list class=""  >
 
-            <q-item-section style="font-size: 150%">Orders</q-item-section>
-          </q-item>
-        </Link>
-      </q-list>
+<Link  href="/orders" as="q-item" style="color: black">
+  <q-item clickable v-ripple>
+    <q-item-section avatar> </q-item-section>
+
+    <q-item-section   style="font-size: 18px" class="text-weight-regular">Orders</q-item-section>
+  </q-item>
+</Link>
+</q-list>
+
     </q-drawer>
 
     <q-page-container>

@@ -46,18 +46,18 @@ class homeController extends Controller
         ]);
         return back();
     }
-    public function dashboard()
-    {
-        return Inertia::render('dashboard');
-    }
-    public function products()
-    {
-        return Inertia::render('products');
-    }
     public function orders()
     {
         return Inertia::render('orders');
     }
+    public function dashboard()
+    {
+        return Inertia::render('dashboard');
+    }
+    // public function products()
+    // {
+    //     return Inertia::render('products');
+    // }
     public function user()
     {
         $data=User::latest()->get();
