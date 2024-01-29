@@ -1,6 +1,6 @@
 <template>
     <p-page class="q-pa-md">
-        <h1>Ini Halaman admin</h1>
+        <!-- <h1>admin</h1 -->
     </p-page>
 </template>
 

@@ -1,19 +1,28 @@
 <template>
-    <q-page class="q-px-lg">
+    <q-page class="q-px-lg"  style="padding-top: 0;background-color: #fdf3f7;">
+    <div class="q-py-lg">
+        <div class="bg-white shadow-1 q-px-lg q-pb-lg" style="border-radius: 6px;">
+
         <div style="display: flex; justify-content: space-between; align-items: center; height: 100px; ">
-            <h4 class="text-weight-bold">User</h4>
-            <q-btn flat @click="dialogUser = true" label="add user"
-            class="text-capitalize text-weight-bold"
-            style="font-size: 25px;color: #fc6dab;"  />
+            <h4 class="text-weight-medium">Admin</h4>
+
+            <q-btn
+            @click="dialogUser = true"
+        icon="add"
+        label="add account"
+        class="text-capitalize text-weight-medium"
+        style="font-size: 16px;color: #fc6dab; background-color: #ffffff;"
+      />
         </div>
 
-        <q-markup-table separator="cell"  >
-            <thead>
+        <q-markup-table flat bordered separator="cell"  >
+            <thead style="background-color: #6dfc93;color: white;">
                 <tr>
-                    <th>NO</th>
-                    <th>Nama</th>
-                    <th>Username</th>
-                    <th>Aksi</th>
+                    <th style="width: 50px;">No</th>
+                    <th style="width: 200px;">Name</th>
+                    <th style="width: 200px;">Username</th>
+                    <th style="width: 250px;">Email</th>
+                    <th style="width: 20px;" >Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,31 +30,46 @@
                     <td>{{ index }}</td>
                     <td>{{ row.name }}</td>
                     <td>{{ row.username }}</td>
-                    <td>
+                    <td>{{ row.email }}</td>
+                    <td class="text-center">
                         <q-btn @click="konfirmasi(row.id)" unelevated label="Delete" color="grey" style="border-radius: 30px;"/>
                         <q-btn @click="edit(row.id)" unelevated label="Edit" color="purple" class="q-mx-xs" style="border-radius: 30px;"/>
                     </td>
                 </tr>
             </tbody>
         </q-markup-table>
+
+    </div>
+    </div>
     </q-page>
 
     <q-dialog v-model="dialogUser">
         <q-card flat style="width: 700px">
             <q-toolbar>
-                <q-toolbar-title>user</q-toolbar-title>
+                <q-toolbar-title  style="color: #fc6dab" icon="" class="text-weight-bold">New Account</q-toolbar-title>
                 <q-space />
-                <q-btn round flat icon="cancel" color="pink" @click="batal" />
+                <q-btn round flat icon="cancel" color="grey-7" @click="batal" />
             </q-toolbar>
             <q-card-section>
                 <q-form class="q-gutter-sm">
-                    <q-input label="nama" v-model="form.name" />
-                    <q-input label="username" v-model="form.username" />
-                    <q-input label="password" v-model="form.password" />
-                    <q-input label="email" v-model="form.email" />
-                    <div>
-                        <q-btn @click="simpan" class="q-mr-sm" label="simpan" icon="save" color="primary" />
-                        <q-btn @click="batal" label="batal" icon="cancel" color="grey-2" text-color="dark" />
+                    <p>Name</p>
+                    <q-input outlined rounded  v-model="form.name" />
+                    <p>Username</p>
+                    <q-input outlined rounded v-model="form.username" />
+                    <p>Password</p>
+                    <q-input outlined rounded  v-model="form.password" />
+                    <p>E-mail</p>
+                    <q-input outlined rounded v-model="form.email" />
+                    <div class="q-my-md q-gutter-sm float-right">
+                        <q-btn
+                            @click="simpan"
+                            class="text-capitalize"
+                            flat
+                            rounded
+                            label="save"
+                            style="width: 100px; background-color: #c04cfd; color: white"
+                            unelevated
+                            dense/>
                     </div>
                 </q-form>
             </q-card-section>
@@ -63,9 +87,6 @@
             </q-card-section>
         </q-card>
     </q-dialog>
-
-
-
 </template>
 <script>
 import Layout from '../layout/layout.vue'

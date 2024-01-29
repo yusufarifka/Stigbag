@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use App\Models\product;
 use DB;
 class homeController extends Controller
 
@@ -46,6 +47,9 @@ class homeController extends Controller
         ]);
         return back();
     }
+    public function produk(){
+        return Inertia::render('productPage');
+    }
     public function orders()
     {
         return Inertia::render('orders');
@@ -54,10 +58,6 @@ class homeController extends Controller
     {
         return Inertia::render('dashboard');
     }
-    // public function products()
-    // {
-    //     return Inertia::render('products');
-    // }
     public function user()
     {
         $data=User::latest()->get();
@@ -89,6 +89,18 @@ class homeController extends Controller
             $hapus->delete();
         }
         return back();
+    }
+    public function getProducts(){
+        $dataProduct=product::get();
+        return response()->json([
+            'dataProduct'=>$dataProduct,
+        ]);
+    }
+    public function getPictures(){
+        $pictProduct=product::limit(3)->get();
+        return response()->json([
+            'pictProduct'=>$pictProduct,
+        ]);
     }
 }
 

@@ -10,7 +10,7 @@ class loginController extends Controller
 {
     public function login(Request $request){
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){
-            return redirect('/dashboard');
+            return redirect('/admin/products/');
         }else{
             return redirect('/');
         }

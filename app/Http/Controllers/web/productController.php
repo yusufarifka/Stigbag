@@ -18,11 +18,13 @@ class productController extends Controller
     }
     public function productPost(Request $request){
         $request->validate([
+            'product_type'=>'required',
             'product_name'=>'required',
             'product_desc'=>'required',
             'price'=>'required',
         ]);
         product::updateOrCreate(['id'=>$request->id],[
+            'product_type'=>$request->product_type,
             'product_name'=>$request->product_name,
             'product_desc'=>$request->product_desc,
             'price'=>$request->price,

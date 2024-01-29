@@ -2,20 +2,20 @@
   <q-layout view="hHh LpR fFf">
     <!-- HEADER -->
     <q-header class="shadow-1"  style="background-color: #ffffff;">
-      <q-toolbar class="q-px-lg">
+      <q-toolbar class="q-px-lg" style="padding-left: 10%; padding-right: 10%;">
         <q-btn
           v-if="$page.props.auth.user"
           dense
           flat
           round
+          style="color: #fc6dab;"
           icon="menu"
           @click="toggleLeftDrawer"
         />
 
         <q-toolbar-title
-          style="font-style: italic; color: #fc6dab; font-weight: bold; font-size: 28px"
         >
-          SticBag
+          <img style="width: 50px;" src="../../../public/assets/img/stibagLogo.png" alt="">
         </q-toolbar-title >
         <q-space />
         <q-tabs inline-label class="text-dark ">
@@ -23,18 +23,9 @@
           <Link href="/" as="q-tab" style="color: #fc6dab; font-size: 18;">
             <q-tab name="home" class="text-capitalize q-mx-md" label="Home" />
           </Link>
-          <Link href="/products" as="q-tab" style="color: #fc6dab; font-size: 18">
-            <q-tab name="products"  class="text-capitalize q-mx-md" label="Products" />
+          <Link href="/product" as="q-tab" style="color: #fc6dab; font-size: 18">
+            <q-tab name="product"  class="text-capitalize q-mx-md" label="Product" />
           </Link>
-          <Link href="/" as="q-tab"  class="text-capitalize" style="color: #fc6dab; font-size: 18">
-            <q-tab name="more"  class="text-capitalize q-mx-md" label="More" />
-          </Link>
-          <Link href="/" as="q-tab" style="color: #fc6dab; font-size: 18">
-            <q-tab name="about us"  class="text-capitalize q-mx-md" label="About us" />
-          </Link>
-          <!-- <Link href="/Profile" as="q-tab" style="color: #FC6DAB; font-size: 18;">
-          <q-tab name="profile" label="Profile" icon="account_circle" />
-          </Link> -->
 
           <q-btn
           flat
@@ -47,15 +38,6 @@
             @click="logout"
             class="text-capitalize q-ml-md"
           />
-          <q-btn
-            rounded
-            outline
-            v-else
-            name="login"
-            style="color: #fc6dab; font-size: 18"
-            label="Login"
-            @click="dialogLogin = true"
-          />
         </q-tabs>
       </q-toolbar>
     </q-header>
@@ -66,20 +48,21 @@
       v-model="leftDrawerOpen"
       side="left"
       bordered
-      class="tlbc"
+      class="tlbc "
       style="width: 100px;background-color: #ffffff;"
     >
       <!-- drawer content -->
-      <q-list class="q-mt-lg">
+      <q-list class="q-mt-md q-ml-md">
         <q-item as="q-item">
-            <q-item-section style="font-size: 18px; color: #b5b5b5;" class="text-weight-bold">Menu</q-item-section>
+            <q-item-section style="font-size: 18px;" class="text-weight-bold text-black">Menu</q-item-section>
         </q-item>
       </q-list>
-      <q-list>
-        <Link href="/dashboard" as="q-item" style="color: black">
+
+      <q-list class=" q-mx-md">
+        <Link href="/admin/dashboard" as="q-item" style="color: black">
           <q-item clickable v-ripple>
             <q-item-section avatar>
-                <q-icon name="home"/>
+                <q-icon name="home" color="pink-2"/>
             </q-item-section>
 
             <q-item-section style="font-size: 18px" class="text-weight-regular">Dashboard</q-item-section>
@@ -87,39 +70,32 @@
         </Link>
       </q-list>
 
-      <q-list class="">
-        <Link href="/user" as="q-item" style="color: black">
+      <q-list class=" q-mx-md">
+        <Link href="/admin/user" as="q-item" style="color: black">
           <q-item clickable v-ripple>
             <q-item-section avatar>
-                <q-icon name="profile"/>
+                <q-icon name="people" color="pink-2"/>
             </q-item-section>
 
-            <q-item-section style="font-size: 18px" class="text-weight-regular">User</q-item-section>
+            <q-item-section style="font-size: 18px" class="text-weight-regular">Admin</q-item-section>
           </q-item>
         </Link>
       </q-list>
 
-      <q-list class=""  >
+      <q-list class=" q-mx-md"  >
 
-        <Link  href="/products" as="q-item" style="color: black">
+        <Link  href="/admin/products" as="q-item" style="color: black">
           <q-item clickable v-ripple>
-            <q-item-section avatar> </q-item-section>
+            <q-item-section avatar>
+                <q-icon name="inventory" color="pink-2"/>
+            </q-item-section>
 
             <q-item-section   style="font-size: 18px" class="text-weight-regular">Products</q-item-section>
           </q-item>
         </Link>
       </q-list>
 
-      <q-list class=""  >
 
-<Link  href="/orders" as="q-item" style="color: black">
-  <q-item clickable v-ripple>
-    <q-item-section avatar> </q-item-section>
-
-    <q-item-section   style="font-size: 18px" class="text-weight-regular">Orders</q-item-section>
-  </q-item>
-</Link>
-</q-list>
 
     </q-drawer>
 
@@ -127,180 +103,38 @@
       <slot />
     </q-page-container>
 
-    <!-- DIALOG -->
-    <q-dialog persistent v-model="dialogLogin">
-      <q-card style="width: 700px">
-        <q-toolbar>
-          <q-toolbar-title v-if="!reg" style="color: #fc6dab" class="text-weight-bold"
-            >Log In to Your Account</q-toolbar-title
-          >
-          <q-toolbar-title v-else style="color: #fc6dab" class="text-weight-bold"
-            >Create Account</q-toolbar-title
-          >
-          <q-space />
-          <span v-if="status.length" class="text-gray q-ml-lg"> {{ status }} </span>
-          <q-btn
-            round
-            icon="cancel"
-            @click="dialogLogin = false"
-            color="grey-2"
-            text-color="dark"
-            unelevated
-            dense
-          />
-        </q-toolbar>
-
-        <q-card-section>
-          <!-- LOGIN -->
-          <q-form v-if="!reg" class="q-gutter-sm">
-            <p>Username</p>
-            <q-input outlined rounded v-model="form.username" style="border-color: black">
-            </q-input>
-            <p>Password</p>
-            <q-input outlined rounded type="password" v-model="form.password"> </q-input>
-
-            <div class="q-my-md q-gutter-sm float-right">
-              <q-btn
-                class="text-capitalize"
-                flat
-                rounded
-                @click="ubah"
-                label="Register"
-                style="width: 100px; background-color: #aeaeae; color: white"
-              />
-              <q-btn
-                class="text-capitalize"
-                flat
-                rounded
-                @click="login"
-                label="Log In"
-                style="width: 100px; background-color: #c04cfd; color: white"
-              />
-            </div>
-          </q-form>
-
-          <!-- REGISTER -->
-          <q-form v-if="reg" class="q-gutter-sm">
-            <p>Name</p>
-            <q-input :hint="errors.name" outlined rounded v-model="register.name">
-            </q-input>
-
-            <p>Username</p>
-            <q-input :hint="errors.username" outlined rounded v-model="register.username">
-            </q-input>
-
-            <p>Password</p>
-            <q-input
-              :hint="errors.password"
-              outlined
-              rounded
-              type="password"
-              v-model="register.password"
-            >
-            </q-input>
-
-            <p>Email</p>
-            <q-input :hint="errors.email" outlined rounded v-model="register.email">
-            </q-input>
-
-            <div class="q-my-md q-gutter-sm float-right">
-              <q-btn
-                class="text-capitalize"
-                flat
-                rounded
-                @click="reg = false"
-                label="Log In"
-                style="width: 100px; background-color: #aeaeae; color: white"
-              />
-              <q-btn
-                class="text-capitalize"
-                flat
-                rounded
-                @click="registerSave"
-                label="Register"
-                style="width: 100px; background-color: #c04cfd; color: white"
-              />
-            </div>
-          </q-form>
-        </q-card-section>
-      </q-card>
-    </q-dialog>
+    <iniFooter />
   </q-layout>
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 import { router } from "@inertiajs/vue3";
+import iniFooter from "../components/footer/iniFooter.vue"
 
 export default {
   props: {
     errors: Object,
   },
+  components:{
+    iniFooter
+  },
   setup() {
     const leftDrawerOpen = ref(false);
-    const dialogLogin = ref(false);
-    const status = ref("");
-    const form = reactive({
-      username: "",
-      password: "",
-    });
-    const register = reactive({
-      name: "",
-      username: "",
-      password: "",
-      email: "",
-    });
-    const reg = ref(false);
-    function ubah() {
-      reg.value = true;
-    }
-    function registerSave() {
-      router.visit("/register", {
-        method: "post",
-        data: {
-          name: register.name,
-          username: register.username,
-          password: register.password,
-          email: register.email,
-        },
-        preserveScroll: true,
-        preserveState: true,
-        onSuccess: () => {
-          register.name = "";
-          register.username = "";
-          register.password = "";
-          register.email = "";
-          status.value = "berhasil disimpan";
-        },
-      });
-    }
-    function login() {
-      router.post("/login", form);
 
-      //menghilangkan popup setelah login
-      dialogLogin.value = false;
-    }
     function logout() {
       router.get("/logout");
     }
 
     return {
       logout,
-      login,
-      status,
-      registerSave,
-      register,
-      ubah,
-      reg,
-      form,
-      dialogLogin,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-    };
-  },
-};
+    }
+  }
+}
 </script>
 
 <style>

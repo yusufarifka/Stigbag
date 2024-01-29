@@ -1,34 +1,42 @@
 <template>
-  <q-page class="q-px-lg" style="padding-top: 0;background-color: #fdf3f7;">
-    <div class="">
+  <section class="q-px-lg" style="padding-top: 0;padding-bottom: 0;background-color: #fdf3f7;">
+    <div class="q-py-lg">
+    <div class="bg-white  shadow-1 q-px-lg q-pb-lg " style="border-radius: 6px;" >
 
 
     <div style="display: flex;justify-content: space-between;align-items: center;height: 100px;">
-      <h4 class="text-weight-bold">Products</h4>
-      <q-btn flat
+      <h4 class="text-weight-medium">Products</h4>
+
+      <q-btn
         @click="addProduct = true"
+        icon="add"
         label="add product"
-        class="text-capitalize text-weight-bold"
-        style="font-size: 25px;color: #fc6dab;"
+        class="text-capitalize text-weight-medium"
+        style="font-size: 16px;color: #fc6dab; background-color: #ffffff;"
       />
     </div>
-    <q-markup-table  separator="cell">
-      <thead>
+    <div>
+
+    </div>
+    <q-markup-table flat bordered separator="cell" style="">
+      <thead style="background-color: #fc6dab;color: white;">
         <tr>
           <th style="width:50px">No</th>
+          <th  style="width: 200px;">Product Type</th>
           <th  style="width: 200px;">Product Name</th>
           <th >Description</th>
-          <th  style="width: 100px;">Price</th>
-          <th >Picture</th>
+          <th  style="width: 150px;">Price</th>
+          <th style="width: 200px;">Picture</th>
           <th style="width:50px">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(row, index) in products" :key="index++">
           <td class="text-center" >{{ index }}</td>
+          <td class="text-center" >{{ row.product_type }}</td>
           <td class="text-center" >{{ row.product_name }}</td>
           <td  v-html="row.product_desc"></td>
-          <td class="text-center" >{{ row.price }}</td>
+          <td class="text-center" v-html="row.price"></td>
           <td >
             <q-img :src="'/storage/'+row.picture"></q-img>
         </td>
@@ -73,12 +81,13 @@
     </q-markup-table>
 
     </div>
-</q-page>
+    </div>
+</section >
 
     <q-dialog v-model="addProduct">
-        <q-card flat style="width: 700px">
+        <q-card flat style="width: 700px;">
         <q-toolbar>
-            <q-toolbar-title style="color: #fc6dab" icon="" class="text-weight-bold">Add products</q-toolbar-title>
+            <q-toolbar-title style="color: #fc6dab" icon="" class="text-weight-bold">New Product</q-toolbar-title>
             <q-space />
             <q-btn round flat icon="cancel" color="grey-7" @click="batal" />
         </q-toolbar>
@@ -86,6 +95,9 @@
 
         <q-card-section>
             <q-form class="q-gutter-sm">
+                <p>Product Type</p>
+                <q-input  outlined rounded v-model="form.product_type" />
+
                 <p>Product Name</p>
                 <q-input  outlined rounded v-model="form.product_name" />
 
@@ -96,29 +108,6 @@
 
                 <p>Product Price</p>
                 <q-input outlined rounded v-model="form.price" />
-                <!-- <tr>
-                <td>
-                <q-img v-if="row.gambar" :src="/storage/ + row.gambar" />
-                </td>
-
-                <td>
-                <q-btn>
-                    <q-icon round name="expand_more" />
-                    <q-menu>
-                    <q-list dense>
-                        <q-item clickable v-close-popup @click="inUpload(row.id)">
-                        <q-item-section side>
-                            <q-icon name="upload" />
-                        </q-item-section>
-                        <q-item-section>
-                            <q-item-label> upload </q-item-label>
-                        </q-item-section>
-                        </q-item>
-                    </q-list>
-                    </q-menu>
-                </q-btn>
-                </td>
-            </tr> -->
 
                 <div class="q-my-md q-gutter-sm float-right">
                     <q-btn
@@ -205,6 +194,7 @@ export default {
     })
     const form = reactive({
       id: "",
+      product_type: "",
       product_name: "",
       product_desc: "",
       price: "",
@@ -223,6 +213,7 @@ export default {
         method: 'post',
         data: {
           id:form.id,
+          product_type:form.product_type,
           product_name:form.product_name,
           product_desc:form.product_desc,
           price:form.price,
@@ -256,9 +247,13 @@ export default {
     function productEdit(id){
         axios.get('/products/edit/'+id).then((res)=>{
             form.id=res.data.id
+            form.product_type=res.data.product_type
             form.product_name=res.data.product_name
             form.product_desc=res.data.product_desc
             addProduct.value=true
+            onSuccess:()=>{
+                addProduct.value=false
+            }
         })
     }
     function productDel(id){

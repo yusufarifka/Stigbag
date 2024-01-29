@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <section>
+    <section >
       <judul />
     </section>
 
